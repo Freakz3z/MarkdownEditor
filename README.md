@@ -1,4 +1,5 @@
 # 基于Swing的简易Markdown编辑器
+![image](https://github.com/user-attachments/assets/2b122f39-1e2c-438b-93a8-ee1f470b5c83)
 
 ## 功能
 - 支持使用Markdown的语法编写
