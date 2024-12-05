@@ -7,11 +7,15 @@ public class MarkdownConverter {
 
     // 将 Markdown 文本转换为 HTML
     public String convert(String markdown) {
-        StringBuilder html = new StringBuilder("<html>\n<head>\n<style>\n") // 添加样式
-                .append("body { font-family: Arial, sans-serif; justify-content: center; }\n")
-                .append("pre { background-color: #f4f4f4; padding: 10px; border-left: 5px solid #ccc; }\n")
-                .append("code { background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px; }\n")
-                .append("</style>\n</head>\n<body>\n");
+        StringBuilder html = new StringBuilder(" ");
+        html.append("""
+                    <!DOCTYPE html>
+                    <html lang="zh">
+                    <title>Markdown演示</title>
+                    <body>
+                    <div class="sidebar_left"></div>
+                    <div class="content">
+                    """); // 添加样式
 
         // 分行处理
         String[] lines = markdown.split("\n");
@@ -78,7 +82,21 @@ public class MarkdownConverter {
             html.append("    </ul>\n");
         }
 
-        html.append("</body>\n</html>");
+        html.append("""
+                    </div>
+                    <div class="sidebar_right"></div>
+                    </div>
+                    </body>
+                    <style>
+                    body {margin: 0;font-family: Arial, sans-serif;display: flex;height: 100vh;overflow: hidden;}
+                    pre {background-color: rgba(255, 255, 255,1);padding: 10px;border-left: 5px solid #ccc; }
+                    code {background-color: rgba(255, 255, 255,0.3);font-family: Arial, sans-serif;font-weight: bold;color: rgb(231, 49, 17);padding: 2px 4px;border-radius: 3px; }
+                    .sidebar_left {width: 20%;left: 0%;background-color: rgba(0, 0, 0, 0.5);backdrop-filter: blur(10px);color: white;padding: 20px;box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);}
+                    .sidebar_right {width: 20%;left: 0%;background-color: rgba(0, 0, 0, 0.5);backdrop-filter: blur(10px);color: white;padding: 20px;box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);}
+                    .content {width: 80%;padding: 20px;overflow-y: auto;color: #f4f4f4;background-color:rgb(22, 21, 21);backdrop-filter: blur(20px);}
+                    </style>
+                    </html>
+                    """);
         return html.toString();
     }
 
